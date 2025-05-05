@@ -1,0 +1,26 @@
+#pragma once
+#include <QWidget>
+#include <QPushButton>
+#include <QLineEdit>
+#include <QLabel>
+#include <QVBoxLayout>
+#include <QFormLayout>
+#include <QPixmap>
+
+class LoginPageWidget : public QWidget {
+    Q_OBJECT
+
+public:
+    LoginPageWidget(QWidget* parent = nullptr);
+    void applyDarkMode(bool dark);
+    QPushButton* getLoginButton() const;
+
+private:
+    QWidget* formContainer;
+    QLineEdit* nameLineEdit;
+    QLineEdit* emailLineEdit;
+    QLineEdit* passwordLineEdit;
+    QPushButton* loginButton;
+    QPushButton* signButton;
+    QLabel* orLabel;
+};
