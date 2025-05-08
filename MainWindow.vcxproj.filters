@@ -29,9 +29,6 @@
     <QtUic Include="MainWindow.ui">
       <Filter>Form Files</Filter>
     </QtUic>
-    <QtMoc Include="MainWindow.h">
-      <Filter>Header Files</Filter>
-    </QtMoc>
     <ClCompile Include="MainWindow.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -46,13 +43,28 @@
     <ClCompile Include="LoginPageWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SignPageWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="EditProfilePageWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="LoginPageWidget.h">
+    <ClInclude Include="HomePageWidget.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
-    <QtMoc Include="HomePageWidget.h">
+    </ClInclude>
+    <ClInclude Include="SignPageWidget.h">
       <Filter>Header Files</Filter>
-    </QtMoc>
+    </ClInclude>
+    <ClInclude Include="LoginPageWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="MainWindow.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="EditProfilePageWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

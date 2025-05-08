@@ -6,29 +6,30 @@
 MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     loginPage = new LoginPageWidget;
     homePage = new HomePageWidget;
-
+	signPage = new SignPageWidget;
+	editProfilePage = new EditProfilePageWidget;
     pagesWidget = new QStackedWidget;
-    pagesWidget->addWidget(loginPage);
-    pagesWidget->addWidget(homePage);
-    pagesWidget->setCurrentWidget(loginPage);
-
+    pagesWidget->addWidget(editProfilePage);
+    pagesWidget->setCurrentWidget(editProfilePage);
+    
     toggleModeButton = new QPushButton;
     toggleModeButton->setCheckable(true);
     toggleModeButton->setIcon(QIcon("media/light.svg"));
     toggleModeButton->setStyleSheet("background-color: white; border:none; padding:10px");
     toggleModeButton->setIconSize(QSize(25, 25));
-
+  
     connect(toggleModeButton, &QPushButton::toggled, this, &MainWindow::toggleDarkMode);
     connect(loginPage->getLoginButton(), &QPushButton::clicked, this, &MainWindow::handleLogin);
+	connect(loginPage->getSignButton(), &QPushButton::clicked, this, &MainWindow::handleSignIn);
 
-    QHBoxLayout* topBarLayout = new QHBoxLayout;
-    topBarLayout->addWidget(toggleModeButton);
+    topBarLayout = new QHBoxLayout;
+    topBarLayout->addWidget(toggleModeButton, 0, Qt::AlignHCenter);
 
-    QVBoxLayout* mainLayout = new QVBoxLayout;
+    
     mainLayout->addLayout(topBarLayout, Qt::AlignHCenter);
     mainLayout->addWidget(pagesWidget);
 	mainLayout->addSpacing(30);
-    QWidget* central = new QWidget;
+    central = new QWidget;
     central->setLayout(mainLayout);
     setCentralWidget(central);
 	setWindowIcon(QIcon("media/icon.png"));
@@ -40,9 +41,15 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 }
 
 void MainWindow::handleLogin() {
+    pagesWidget->addWidget(homePage);
     pagesWidget->setCurrentWidget(homePage);
 
   }
+
+void MainWindow::handleSignIn() {
+	pagesWidget->addWidget(signPage);
+	pagesWidget->setCurrentWidget(signPage);  
+}
 
 void MainWindow::toggleDarkMode() {
     isDarkMode = !isDarkMode;
@@ -59,5 +66,8 @@ void MainWindow::toggleDarkMode() {
 
     // Propagate dark mode change
     loginPage->applyDarkMode(isDarkMode);
+	signPage->applyDarkMode(isDarkMode);
     homePage->applyDarkMode(isDarkMode);
+	editProfilePage->applyDarkMode(isDarkMode);
+    
 }

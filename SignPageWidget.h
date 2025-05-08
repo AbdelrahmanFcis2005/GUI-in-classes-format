@@ -6,24 +6,21 @@
 #include <QVBoxLayout>
 #include <QFormLayout>
 #include <QPixmap>
-
-class LoginPageWidget : public QWidget {
+class SignPageWidget : public QWidget {
 
 public:
-    LoginPageWidget(QWidget* parent = nullptr);
+    SignPageWidget(QWidget* parent = nullptr);
     void applyDarkMode(bool dark);
-    QPushButton* getLoginButton() const;
 	QPushButton* getSignButton() const;
 
 private:
-	QFormLayout* formLayout;
+    QFormLayout* formLayout;
     QWidget* formContainer;
-	QLabel* logoLabel;
+    QLabel* logoLabel;
     QLineEdit* nameLineEdit;
     QLineEdit* emailLineEdit;
     QLineEdit* passwordLineEdit;
-    QPushButton* loginButton;
     QPushButton* signButton;
-    QLabel* orLabel;
 	QVBoxLayout* layout;
 };
+

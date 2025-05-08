@@ -3,22 +3,26 @@
 #include <QStackedWidget>
 #include <QPushButton>
 #include "LoginPageWidget.h"
+#include "SignPageWidget.h"
+#include "EditProfilePageWidget.h"
 #include "HomePageWidget.h"
 
 class MainWindow : public QMainWindow {
-    Q_OBJECT
 
 public:
     MainWindow(QWidget* parent = nullptr);
-    QVBoxLayout* mainLayout;
+	QVBoxLayout* mainLayout= new QVBoxLayout;
+    QWidget* central;
 private:
+	QHBoxLayout* topBarLayout;
     QStackedWidget* pagesWidget;
     LoginPageWidget* loginPage;
+	SignPageWidget* signPage;
+	EditProfilePageWidget* editProfilePage;
     HomePageWidget* homePage;
     QPushButton* toggleModeButton;
     bool isDarkMode = false;
-
-private slots:
     void handleLogin();
+	void handleSignIn();
     void toggleDarkMode();
 };

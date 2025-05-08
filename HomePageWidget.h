@@ -12,7 +12,7 @@
 #include <QFrame>
 
 class HomePageWidget : public QWidget {
-    Q_OBJECT
+
 
 public:
     HomePageWidget(QWidget* parent = nullptr);

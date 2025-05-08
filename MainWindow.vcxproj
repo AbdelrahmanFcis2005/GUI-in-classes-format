@@ -92,17 +92,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="EditProfilePageWidget.cpp" />
+    <ClCompile Include="SignPageWidget.cpp" />
     <QtRcc Include="MainWindow.qrc" />
     <QtUic Include="MainWindow.ui" />
-    <QtMoc Include="MainWindow.h" />
+    <ClInclude Include="EditProfilePageWidget.h" />
+    <ClInclude Include="MainWindow.h" />
     <ClCompile Include="HomePageWidget.cpp" />
     <ClCompile Include="LoginPageWidget.cpp" />
     <ClCompile Include="MainWindow.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <QtMoc Include="HomePageWidget.h" />
-    <QtMoc Include="LoginPageWidget.h" />
+    <ClInclude Include="HomePageWidget.h" />
+    <ClInclude Include="LoginPageWidget.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="SignPageWidget.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
