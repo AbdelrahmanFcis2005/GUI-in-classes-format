@@ -5,6 +5,7 @@
 #include <QLabel>
 #include <QVBoxLayout>
 #include <QFormLayout>
+#include <QPixmap>
 class EditProfilePageWidget : public QWidget
 {
 public:
@@ -15,7 +16,7 @@ public:
 private:
 	QFormLayout* formLayout;
 	QWidget* formContainer;
-	QLabel* logoLabel;
+	QPushButton* logoButton;
 	QLineEdit* nameLineEdit;
 	QLineEdit* emailLineEdit;
 	QLineEdit* passwordLineEdit;

@@ -7,6 +7,7 @@
 #include <QFormLayout>
 #include <QPixmap>
 
+
 class LoginPageWidget : public QWidget {
 
 public:
@@ -18,7 +19,7 @@ public:
 private:
 	QFormLayout* formLayout;
     QWidget* formContainer;
-	QLabel* logoLabel;
+    QPushButton* logoButton;
     QLineEdit* nameLineEdit;
     QLineEdit* emailLineEdit;
     QLineEdit* passwordLineEdit;

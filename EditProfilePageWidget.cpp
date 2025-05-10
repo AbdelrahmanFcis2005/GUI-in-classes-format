@@ -4,11 +4,10 @@
 EditProfilePageWidget::EditProfilePageWidget(QWidget* parent) : QWidget(parent) {
     formLayout = new QFormLayout;
 
-    logoLabel = new QLabel;
-    QPixmap logoPixmap("media/profile.png");
-	logoLabel->setFixedSize(200, 200);
-    logoLabel->setPixmap(logoPixmap);
-    logoLabel->setStyleSheet("padding:0px; margin:0px; border:none");
+    logoButton = new QPushButton;
+    logoButton->setIcon(QIcon("media/profile.svg"));
+    logoButton->setStyleSheet("border:none; padding:0px");
+    logoButton->setIconSize(QSize(100, 100));
 
     nameLineEdit = new QLineEdit;
     emailLineEdit = new QLineEdit;
@@ -33,8 +32,8 @@ EditProfilePageWidget::EditProfilePageWidget(QWidget* parent) : QWidget(parent) 
     formContainer->setContentsMargins(10, 10, 10, 10);
 
     layout = new QVBoxLayout;
-    layout->addWidget(logoLabel, 0, Qt::AlignHCenter);
-    layout->addSpacing(35);
+    layout->addWidget(logoButton, 0, Qt::AlignHCenter);
+    layout->addSpacing(10);
     layout->addWidget(formContainer, 0, Qt::AlignHCenter);
     layout->addStretch();
     setLayout(layout);
