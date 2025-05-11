@@ -137,3 +137,21 @@ void HomePageWidget::applyDarkMode(bool dark) {
         bottomNav->setStyleSheet("background-color: white; border-top: 2px solid #888;");
     }
 }
+
+QPushButton* HomePageWidget::getProfileButton() const {
+	return navButtons[0];
+}
+
+QPushButton* HomePageWidget::getBalanceButton() const {
+	return navButtons[1];
+}
+
+QPushButton* HomePageWidget::getFeedbackButton() const {
+	return navButtons[2];
+}
+
+QPushButton* HomePageWidget::getLogoutButton() const {
+	return navButtons[3];
+}
+
+

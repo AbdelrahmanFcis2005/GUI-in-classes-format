@@ -13,10 +13,13 @@
 
 class HomePageWidget : public QWidget {
 
-
 public:
     HomePageWidget(QWidget* parent = nullptr);
     void applyDarkMode(bool dark);
+	QPushButton* getProfileButton() const;
+	QPushButton* getBalanceButton() const;
+	QPushButton* getFeedbackButton() const;
+	QPushButton* getLogoutButton() const;
 
 private:
     QFrame* bottomNav;

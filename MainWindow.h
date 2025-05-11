@@ -5,7 +5,8 @@
 #include "LoginPageWidget.h"
 #include "SignPageWidget.h"
 #include "EditProfilePageWidget.h"
-#include "HomePageWidget.h"
+#include "HomePageWidget.h" 
+#include "ShowBalanceWidget.h"
 #include <QSize>
 #include <QIcon>
 
@@ -23,6 +24,7 @@ private:
     QStackedWidget* pagesWidget;
     LoginPageWidget* loginPage;
 	SignPageWidget* signPage;
+    ShowBalanceWidget* showBalance;
 	EditProfilePageWidget* editProfilePage;
     HomePageWidget* homePage;
     QPushButton* toggleModeButton;
@@ -32,7 +34,9 @@ private:
     bool isDarkMode = false;
 	void goBack();
 	void updateBackButtonVisibility();
-    void handleLogin();
-	void handleSignIn();
+    void showEditProfile();
+    void showShowBalance();
+    void showHome();
+	void showSignUp();
     void toggleDarkMode();
 };

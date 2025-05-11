@@ -49,11 +49,11 @@
     <ClCompile Include="EditProfilePageWidget.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="showBalanceWidget.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="HomePageWidget.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="SignPageWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -64,6 +64,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="EditProfilePageWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="showBalanceWidget.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="HomePageWidget.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

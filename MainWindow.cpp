@@ -6,6 +6,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     homePage = new HomePageWidget;
     signPage = new SignPageWidget;
     editProfilePage = new EditProfilePageWidget;
+    showBalance = new ShowBalanceWidget;
 
     pagesWidget = new QStackedWidget;
     pagesWidget->addWidget(loginPage);
@@ -18,8 +19,10 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     toggleModeButton->setIconSize(QSize(30, 30));
 
     connect(toggleModeButton, &QPushButton::toggled, this, &MainWindow::toggleDarkMode);
-    connect(loginPage->getLoginButton(), &QPushButton::clicked, this, &MainWindow::handleLogin);
-    connect(loginPage->getSignButton(), &QPushButton::clicked, this, &MainWindow::handleSignIn);
+    connect(loginPage->getLoginButton(), &QPushButton::clicked, this, &MainWindow::showHome);
+    connect(loginPage->getSignButton(), &QPushButton::clicked, this, &MainWindow::showSignUp);
+	connect(homePage->getProfileButton(), &QPushButton::clicked, this, &MainWindow::showEditProfile);
+	connect(homePage->getBalanceButton(), &QPushButton::clicked, this, &MainWindow::showShowBalance);
 
     mainLayout = new QVBoxLayout;
 
@@ -42,7 +45,6 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     maximizeButton->setStyleSheet(buttonStyle);
     backButton->setStyleSheet(buttonStyle + " QPushButton { color: black; font-weight:bold;  }");
 
-    //backButton->hide(); // Hide by default on login page
 
     connect(closeButton, &QPushButton::clicked, this, &QMainWindow::close);
     connect(minimizeButton, &QPushButton::clicked, this, &QMainWindow::showMinimized);
@@ -102,7 +104,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 }
 
 void MainWindow::goBack() {
-    pagesWidget->setCurrentWidget(loginPage);
+		pagesWidget->removeWidget(pagesWidget->currentWidget());
     updateBackButtonVisibility();
 }
 
@@ -115,16 +117,28 @@ void MainWindow::updateBackButtonVisibility() {
     }
 }
 
-void MainWindow::handleLogin() {
+void MainWindow::showShowBalance() {
+	pagesWidget->addWidget(showBalance);
+	pagesWidget->setCurrentWidget(showBalance);
+	updateBackButtonVisibility();
+}
+
+void MainWindow::showHome() {
     pagesWidget->addWidget(homePage);
     pagesWidget->setCurrentWidget(homePage);
     updateBackButtonVisibility();
 }
 
-void MainWindow::handleSignIn() {
+void MainWindow::showSignUp() {
 	pagesWidget->addWidget(signPage);
     pagesWidget->setCurrentWidget(signPage);
     updateBackButtonVisibility();
+}
+
+void MainWindow::showEditProfile() {
+	pagesWidget->addWidget(editProfilePage);
+	pagesWidget->setCurrentWidget(editProfilePage);
+	updateBackButtonVisibility();
 }
 
 void MainWindow::toggleDarkMode() {
@@ -142,6 +156,12 @@ void MainWindow::toggleDarkMode() {
 	setStyleSheet(isDarkMode
 		? "background-color: #2c2c2c;"
 		: "background-color: white;");
+
+	backButton->setStyleSheet(isDarkMode
+		? "QPushButton { color: white; border: none; background-color: transparent; font-size: 22px; padding:10px; }"
+        "QPushButton:hover { background-color: #e0e0e0; }"
+		: "QPushButton { color: black; border: none; background-color: transparent; font-size: 22px; padding:10px; }"
+        "QPushButton:hover { background-color: #e0e0e0; }");
 
     loginPage->applyDarkMode(isDarkMode);
 	signPage->applyDarkMode(isDarkMode);
