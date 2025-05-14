@@ -9,10 +9,11 @@ EditProfilePageWidget::EditProfilePageWidget(QWidget* parent) : QWidget(parent) 
     logoButton->setStyleSheet("border:none; padding:0px");
     logoButton->setIconSize(QSize(100, 100));
 
-    nameLineEdit = new QLineEdit;
-    emailLineEdit = new QLineEdit;
-    passwordLineEdit = new QLineEdit;
-    saveButton = new QPushButton("Save");
+    nameLineEdit = new QLineEdit(this);
+    emailLineEdit = new QLineEdit(this);
+    passwordLineEdit = new QLineEdit(this);
+    saveButton = new QPushButton(this);
+	saveButton->setText("Save");
 
     nameLineEdit->setPlaceholderText("Full Name");
     emailLineEdit->setPlaceholderText("Email");
@@ -24,14 +25,14 @@ EditProfilePageWidget::EditProfilePageWidget(QWidget* parent) : QWidget(parent) 
     formLayout->addWidget(passwordLineEdit);
     formLayout->addWidget(saveButton);
 
-    formContainer = new QWidget;
+    formContainer = new QWidget(this);
     formContainer->setLayout(formLayout);
     formContainer->setStyleSheet("background-color: white;border: 1.4px solid black; border-radius: 12px; padding: 15px;");
     formContainer->setFixedWidth(500);
     formContainer->setFixedHeight(510);
     formContainer->setContentsMargins(10, 10, 10, 10);
 
-    layout = new QVBoxLayout;
+    layout = new QVBoxLayout(this);
     layout->addWidget(logoButton, 0, Qt::AlignHCenter);
     layout->addSpacing(10);
     layout->addWidget(formContainer, 0, Qt::AlignHCenter);

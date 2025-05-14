@@ -7,6 +7,10 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     signPage = new SignPageWidget;
     editProfilePage = new EditProfilePageWidget;
     showBalance = new ShowBalanceWidget;
+	requestPage = new RequestWidget;
+	sendPage = new SendWidget;
+	viewTransactionsPage = new ViewTransactions;
+
 
     pagesWidget = new QStackedWidget;
     pagesWidget->addWidget(loginPage);
@@ -23,13 +27,24 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     connect(loginPage->getSignButton(), &QPushButton::clicked, this, &MainWindow::showSignUp);
 	connect(homePage->getProfileButton(), &QPushButton::clicked, this, &MainWindow::showEditProfile);
 	connect(homePage->getBalanceButton(), &QPushButton::clicked, this, &MainWindow::showShowBalance);
+	connect(homePage->getLogoutButton(), &QPushButton::clicked, this, &MainWindow::showLoginPage);
+	connect(homePage->getViewTransactionsButton(), &QPushButton::clicked, this, &MainWindow::showTransactions);
+	connect(homePage->getRequestButton(), &QPushButton::clicked, this, &MainWindow::showRequest);
+	connect(homePage->getSendButton(), &QPushButton::clicked, this, &MainWindow::showSendPage);
+	connect(signPage->getSignButton(), &QPushButton::clicked, this, &MainWindow::showHome);
+
+
 
     mainLayout = new QVBoxLayout;
 
-    closeButton = new QPushButton("✕");
-    minimizeButton = new QPushButton("—");
-    maximizeButton = new QPushButton("▢");
-    backButton = new QPushButton("←");
+    closeButton = new QPushButton(this);
+	closeButton->setText("✕");
+    minimizeButton = new QPushButton(this);
+	minimizeButton->setText("–");
+    maximizeButton = new QPushButton(this);
+	maximizeButton->setText("❏");
+    backButton = new QPushButton(this);
+	backButton->setText("<-");
 
     QSize buttonSize(35, 35);
     QString buttonStyle = "QPushButton { border: none; background-color: transparent; font-size: 22px; padding:10px; }"
@@ -65,7 +80,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
         });
     connect(backButton, &QPushButton::clicked, this, &MainWindow::goBack);
 
-    windowControlsLayout = new QHBoxLayout;
+    windowControlsLayout = new QHBoxLayout(this);
     windowControlsLayout->addWidget(backButton);
 	windowControlsLayout->addStretch();
     windowControlsLayout->addWidget(minimizeButton);
@@ -73,15 +88,15 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     windowControlsLayout->addWidget(closeButton);
     windowControlsLayout->setContentsMargins(20, 0, 0, 10);
 
-    windowControlsWidget = new QWidget;
+    windowControlsWidget = new QWidget(this);
     windowControlsWidget->setLayout(windowControlsLayout);
     windowControlsWidget->setFixedHeight(45);
     windowControlsWidget->setStyleSheet("background-color: white; padding:0px;");
 
-    topBarLayout = new QHBoxLayout;
+    topBarLayout = new QHBoxLayout(this);
     topBarLayout->addWidget(toggleModeButton, 0, Qt::AlignHCenter);
 
-    QWidget* topBarWidget = new QWidget;
+    QWidget* topBarWidget = new QWidget(this);
     topBarWidget->setLayout(topBarLayout);
 
     mainLayout->addWidget(windowControlsWidget);
@@ -91,7 +106,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     mainLayout->addSpacing(80);
     mainLayout->setContentsMargins(0, 0, 0, 0);
 
-    central = new QWidget;
+    central = new QWidget(this);
     central->setLayout(mainLayout);
     setCentralWidget(central);
 
@@ -117,6 +132,12 @@ void MainWindow::updateBackButtonVisibility() {
     }
 }
 
+void MainWindow::showLoginPage() {
+	pagesWidget->addWidget(loginPage);
+	pagesWidget->setCurrentWidget(loginPage);
+	updateBackButtonVisibility();
+}
+
 void MainWindow::showShowBalance() {
 	pagesWidget->addWidget(showBalance);
 	pagesWidget->setCurrentWidget(showBalance);
@@ -138,6 +159,24 @@ void MainWindow::showSignUp() {
 void MainWindow::showEditProfile() {
 	pagesWidget->addWidget(editProfilePage);
 	pagesWidget->setCurrentWidget(editProfilePage);
+	updateBackButtonVisibility();
+}
+
+void MainWindow::showRequest() {
+	pagesWidget->addWidget(requestPage);
+	pagesWidget->setCurrentWidget(requestPage);
+	updateBackButtonVisibility();
+}
+
+void MainWindow::showSendPage() {
+	pagesWidget->addWidget(sendPage);
+	pagesWidget->setCurrentWidget(sendPage);
+	updateBackButtonVisibility();
+}
+
+void MainWindow::showTransactions() {
+	pagesWidget->addWidget(viewTransactionsPage);
+	pagesWidget->setCurrentWidget(viewTransactionsPage);
 	updateBackButtonVisibility();
 }
 
@@ -167,5 +206,9 @@ void MainWindow::toggleDarkMode() {
 	signPage->applyDarkMode(isDarkMode);
     homePage->applyDarkMode(isDarkMode);
 	editProfilePage->applyDarkMode(isDarkMode);
+	showBalance->applyDarkMode(isDarkMode);
+	requestPage->applyDarkMode(isDarkMode);
+	sendPage->applyDarkMode(isDarkMode);
+    viewTransactionsPage->applyDarkMode(isDarkMode);
     
 }

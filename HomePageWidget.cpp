@@ -6,41 +6,44 @@ HomePageWidget::HomePageWidget(QWidget* parent) : QWidget(parent) {
     QVBoxLayout* mainLayout = new QVBoxLayout(this);
     mainLayout->setContentsMargins(0, 0, 0, 0);
 
-    QHBoxLayout* tabLayout = new QHBoxLayout;
-    QPushButton* RequestMoneyButton = new QPushButton("Request Money");
-    QPushButton* sendMoneyButton = new QPushButton("Send Money");
+    QHBoxLayout* tabLayout = new QHBoxLayout(this);
+    RequestButton = new QPushButton(this);
+	RequestButton->setText("Request Money");
+    SendButton = new QPushButton(this);
+	SendButton->setText("Send Money");
 
-    RequestMoneyButton->setStyleSheet(R"(
+    RequestButton->setStyleSheet(R"(
     QPushButton {
-        background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #26D0CE, stop:1 #1A2980); text-align:left; color: white; font-weight: 90;font-size: 29px; padding-left:25px; padding-bottom: 150px; border-radius: 12px;
+        background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #26D0CE, stop:1 #1A2980); text-align:left; color: white; font-size: 35px; padding-left:25px; padding-bottom: 150px; border-radius: 12px;
     }
     QPushButton:hover {
-        font-size: 35px;
+        font-size: 40px;
         padding-bottom: 140px;
  padding-left: 30px;
     }
 )");
-    sendMoneyButton->setStyleSheet(R"(
+    SendButton->setStyleSheet(R"(
     QPushButton {
-background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #FF4B2B, stop:1 #FF416C); color: white; text-align:left; font-weight: 90; font-size: 29px; padding-left:25px; padding-bottom: 150px; border-radius: 12px;
+background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #FF4B2B, stop:1 #FF416C); color: white; text-align:left; font-size: 35px; padding-left:25px; padding-bottom: 150px; border-radius: 12px;
     }
     QPushButton:hover {
-        font-size: 35px;
+        font-size: 40px;
         padding-bottom: 140px;
  padding-left: 30px;    
 }
 )");
-    RequestMoneyButton->setFixedSize(500, 220);
-    sendMoneyButton->setFixedSize(500, 220);
+    RequestButton->setFixedSize(450, 250);
+    SendButton->setFixedSize(450, 250);
 
-    tabLayout->addWidget(RequestMoneyButton);
-    tabLayout->addWidget(sendMoneyButton);
+    tabLayout->addWidget(RequestButton);
+    tabLayout->addWidget(SendButton);
 
-    QPushButton* centerButton = new QPushButton("€");
-    centerButton->setFixedSize(135, 120);
+    centerButton = new QPushButton(this);
+	centerButton->setText("Welcome");
+    centerButton->setFixedSize(300, 100);
     centerButton->setStyleSheet(R"(
     QPushButton {
-background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #FFF8DC, stop:0.4 #FFD700, stop:0.7 #FFC300, stop:1 #B8860B); color:  #2c2c2c; border-radius: 55px; font-size: 40px;    }
+background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #FFF8DC, stop:0.4 #FFD700, stop:0.7 #FFC300, stop:1 #B8860B); color:  #2c2c2c; border-radius: 8px; font-size: 40px;    }
     QPushButton:hover {
         font-size: 50px;
         padding-bottom: 35px;
@@ -52,7 +55,7 @@ background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #
     mainLayout->addSpacing(40);
     mainLayout->addLayout(tabLayout);
 
-    bottomNav = new QFrame;
+    bottomNav = new QFrame(this);
     bottomNav->setStyleSheet(
         "background-color:white;"
         "border-top: 2px solid #888;"
@@ -63,7 +66,7 @@ background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #
     navLayout->setContentsMargins(0, 0, 0, 0);
     navLayout->setSpacing(0);
 
-    labels = { "👤\nMy Profile", "💰\nMy Balance", "💬\nFeedbacks", "🚪\nLog Out" };
+    labels = { "👤\nMy Profile", "💰\nMy Balance", "💱\nMy Transactions", "🚪\nLog Out" };
     
 
     for (const QString& label : labels) {
@@ -98,6 +101,35 @@ background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #
 void HomePageWidget::applyDarkMode(bool dark) {
     if (dark) {
         setStyleSheet("background-color: #2c2c2c;");
+		centerButton->setStyleSheet(R"(
+            QPushButton {
+                background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #FFF8DC, stop:0.4 #FFD700, stop:0.7 #FFC300, stop:1 #B8860B); color:  white; border-radius: 8px; font-size: 40px;
+            }
+            QPushButton:hover {
+                font-size: 50px;
+                padding-bottom: 35px;
+            }
+        )");
+		RequestButton->setStyleSheet(R"(
+            QPushButton {
+                background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #26D0CE, stop:1 #1A2980); text-align:left; color: white; font-weight: 90;font-size: 35px; padding-left:25px; padding-bottom: 150px; border-radius: 12px;
+            }
+            QPushButton:hover {
+                font-size: 40px;
+                padding-bottom: 140px;
+                padding-left: 30px;
+            }
+        )");
+		SendButton->setStyleSheet(R"(
+            QPushButton {
+                background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #FF4B2B, stop:1 #FF416C); color: white; text-align:left; font-weight: 90; font-size: 35px; padding-left:25px; padding-bottom: 150px; border-radius: 12px;
+            }
+            QPushButton:hover {
+                font-size: 40px;
+                padding-bottom: 140px;
+                padding-left: 30px;
+            }
+        )");
         for (QPushButton* btn : navButtons) {
                 btn->setStyleSheet(R"(
                 QPushButton {
@@ -118,6 +150,35 @@ void HomePageWidget::applyDarkMode(bool dark) {
     }
     else {
         setStyleSheet("background-color: white;");
+		centerButton->setStyleSheet(R"(
+            QPushButton {
+                background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #FFF8DC, stop:0.4 #FFD700, stop:0.7 #FFC300, stop:1 #B8860B); color:  #2c2c2c; border-radius: 8px; font-size: 40px;
+            }
+            QPushButton:hover {
+                font-size: 50px;
+                padding-bottom: 35px;
+            }
+        )");
+		RequestButton->setStyleSheet(R"(
+            QPushButton {
+                background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #26D0CE, stop:1 #1A2980); color: #2c2c2c; text-align:left; font-size: 35px; padding-left:25px; padding-bottom: 150px; border-radius: 12px;
+            }
+            QPushButton:hover {
+                font-size: 40px;
+                padding-bottom: 140px;
+                padding-left: 30px;
+            }
+        )");
+		SendButton->setStyleSheet(R"(
+            QPushButton {
+                background: qradialgradient(cx:0.5, cy:0.5, radius:1.0, fx:0.5, fy:0.5, stop:0 #FF4B2B, stop:1 #FF416C); color: #2c2c2c; text-align:left; font-size: 35px; padding-left:25px; padding-bottom: 150px; border-radius: 12px;
+            }
+            QPushButton:hover {
+                font-size: 40px;
+                padding-bottom: 140px;
+                padding-left: 30px;
+            }
+        )");
         for (QPushButton* btn : navButtons) {
             btn->setStyleSheet(R"(
                 QPushButton {
@@ -146,7 +207,7 @@ QPushButton* HomePageWidget::getBalanceButton() const {
 	return navButtons[1];
 }
 
-QPushButton* HomePageWidget::getFeedbackButton() const {
+QPushButton* HomePageWidget::getViewTransactionsButton() const {
 	return navButtons[2];
 }
 
@@ -154,4 +215,10 @@ QPushButton* HomePageWidget::getLogoutButton() const {
 	return navButtons[3];
 }
 
+QPushButton* HomePageWidget::getRequestButton() const {
+	return RequestButton;
+}
 
+QPushButton* HomePageWidget::getSendButton() const {
+	return SendButton;
+}

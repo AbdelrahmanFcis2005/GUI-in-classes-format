@@ -3,17 +3,18 @@
 
 SignPageWidget::SignPageWidget(QWidget* parent) : QWidget(parent) {
     formLayout = new QFormLayout;
+    formContainer = new QWidget(this);
 
-    logoLabel = new QLabel;
-    QPixmap logoPixmap("media/ASUPAL(1).png");
-    logoPixmap = logoPixmap.scaledToWidth(190, Qt::SmoothTransformation);
-    logoLabel->setPixmap(logoPixmap);
-    logoLabel->setStyleSheet("padding:0px; margin:0px");
+    logoButton = new QPushButton(this);
+    logoButton->setIcon(QIcon("media/ASU-PAY.svg"));
+    logoButton->setStyleSheet("border:none; padding:0px");
+    logoButton->setIconSize(QSize(110, 110));
 
-    nameLineEdit = new QLineEdit;
-    emailLineEdit = new QLineEdit;
-    passwordLineEdit = new QLineEdit;
-    signButton = new QPushButton("Sign Up");
+    nameLineEdit = new QLineEdit(formContainer);
+    emailLineEdit = new QLineEdit(formContainer);
+    passwordLineEdit = new QLineEdit(formContainer);
+    signButton = new QPushButton(formContainer);
+	signButton->setText("Sign Up");
 
     nameLineEdit->setPlaceholderText("Full Name");
     emailLineEdit->setPlaceholderText("Email");
@@ -25,15 +26,14 @@ SignPageWidget::SignPageWidget(QWidget* parent) : QWidget(parent) {
     formLayout->addWidget(passwordLineEdit);
     formLayout->addWidget(signButton);
 
-    formContainer = new QWidget;
     formContainer->setLayout(formLayout);
     formContainer->setStyleSheet("background-color: white;border: 1.4px solid black; border-radius: 12px; padding: 15px;");
     formContainer->setFixedWidth(500);
     formContainer->setFixedHeight(510);
     formContainer->setContentsMargins(10, 10, 10, 10);
 
-    layout = new QVBoxLayout;
-    layout->addWidget(logoLabel, 0, Qt::AlignHCenter);
+    layout = new QVBoxLayout(this);
+    layout->addWidget(logoButton, 0, Qt::AlignHCenter);
     layout->addSpacing(35);
     layout->addWidget(formContainer, 0, Qt::AlignHCenter);
     layout->addStretch();

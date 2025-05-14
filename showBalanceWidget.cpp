@@ -10,11 +10,11 @@ ShowBalanceWidget::ShowBalanceWidget(QWidget* parent)
 {
     QVBoxLayout* layout = new QVBoxLayout(this);
 
-    QLabel* titleLabel = new QLabel("Current Balance");
+    titleLabel = new QLabel("Current Balance");
     titleLabel->setAlignment(Qt::AlignCenter);
     titleLabel->setStyleSheet("font-size: 24px; font-weight: bold;");
 
-    balanceLabel = new QLabel("$ 0.00");
+    balanceLabel = new QLabel("E.P 0.00");
     balanceLabel->setAlignment(Qt::AlignCenter);
     balanceLabel->setFixedSize(300, 80);
     balanceLabel->setStyleSheet(
@@ -74,19 +74,18 @@ ShowBalanceWidget::ShowBalanceWidget(QWidget* parent)
     layout->addLayout(inputLayout);
     layout->addStretch();
 
-    // Timer setup
     balanceAnimationTimer = new QTimer(this);
-    balanceAnimationTimer->setInterval(15); // ~60 fps
+    balanceAnimationTimer->setInterval(30); 
     connect(balanceAnimationTimer, &QTimer::timeout, [=]() {
         double diff = targetBalance - currentBalance;
-        if (std::abs(diff) < 0.01) {
+        if (diff < 0.01) {
             currentBalance = targetBalance;
-            balanceLabel->setText(QString("$ %1").arg(currentBalance, 0, 'f', 2));
+            balanceLabel->setText(QString("E.P %1").arg(currentBalance, 0, 'f', 2));
             balanceAnimationTimer->stop();
             return;
         }
-        currentBalance += diff * 0.1; // ease animation
-        balanceLabel->setText(QString("$ %1").arg(currentBalance, 0, 'f', 2));
+        currentBalance += diff * 0.1;
+        balanceLabel->setText(QString("E.P %1").arg(currentBalance, 0, 'f', 2));
         });
 }
 
@@ -103,5 +102,54 @@ void ShowBalanceWidget::updateBalanceFromInput() {
     }
     else {
         balanceLabel->setText("Invalid input!");
+    }
+}
+
+void ShowBalanceWidget::applyDarkMode(bool dark) {
+    if (dark) {
+        setStyleSheet("background-color: #2c2c2c;");
+        titleLabel->setStyleSheet("font-size: 24px; font-weight: bold; color: white;");
+        balanceLabel->setStyleSheet(
+            "background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #4facfe, stop:1 #00f2fe);"
+            "border-radius: 20px;"
+            "font-size: 30px;"
+            "font-weight: bold;"
+            "color: white;"
+            "padding: 15px;"
+        );
+        balanceInput->setStyleSheet(
+            "QLineEdit {"
+            "  font-size: 16px;"
+            "  padding: 8px;"
+            "  border: 2px solid #ccc;"
+            "  border-radius: 10px;"
+            "}"
+            "QLineEdit:focus {"
+            "  border-color: #7abaff;"
+            "}"
+        );
+    }
+    else {
+        setStyleSheet("background-color: white;");
+        titleLabel->setStyleSheet("font-size: 24px; font-weight: bold; color: black;");
+        balanceLabel->setStyleSheet(
+            "background: qlineargradient(x1:0, y1:0, x2:1, y2:1, stop:0 #4facfe, stop:1 #00f2fe);"
+            "border-radius: 20px;"
+            "font-size: 30px;"
+            "font-weight: bold;"
+            "color: black;"
+            "padding: 15px;"
+        );
+        balanceInput->setStyleSheet(
+            "QLineEdit {"
+            "  font-size: 16px;"
+            "  padding: 8px;"
+            "  border: 2px solid #ccc;"
+            "  border-radius: 10px;"
+            "}"
+            "QLineEdit:focus {"
+            "  border-color: #7abaff;"
+            "}"
+        );
     }
 }

@@ -7,6 +7,9 @@
 #include "EditProfilePageWidget.h"
 #include "HomePageWidget.h" 
 #include "ShowBalanceWidget.h"
+#include "RequestWidget.h"
+#include "sendWidget.h"
+#include "ViewTransactions.h"
 #include <QSize>
 #include <QIcon>
 
@@ -25,8 +28,11 @@ private:
     LoginPageWidget* loginPage;
 	SignPageWidget* signPage;
     ShowBalanceWidget* showBalance;
+	RequestWidget* requestPage;
 	EditProfilePageWidget* editProfilePage;
     HomePageWidget* homePage;
+	SendWidget* sendPage;
+	ViewTransactions* viewTransactionsPage;
     QPushButton* toggleModeButton;
     QPushButton* closeButton;
     QPushButton* maximizeButton;   
@@ -38,5 +44,9 @@ private:
     void showShowBalance();
     void showHome();
 	void showSignUp();
+	void showRequest();
+	void showLoginPage();
     void toggleDarkMode();
+	void showSendPage();
+	void showTransactions();
 };

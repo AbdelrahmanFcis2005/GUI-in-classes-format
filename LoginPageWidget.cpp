@@ -2,19 +2,23 @@
 #include <QPixmap>
 
 LoginPageWidget::LoginPageWidget(QWidget* parent) : QWidget(parent) {
-    formLayout = new QFormLayout;
+    formLayout = new QFormLayout(this);
+    formContainer = new QWidget(this);
 
-    logoButton = new QPushButton;
+    logoButton = new QPushButton(this);
     logoButton->setIcon(QIcon("media/ASU-PAY.svg"));
     logoButton->setStyleSheet("border:none; padding:0px");
     logoButton->setIconSize(QSize(110, 110));
 
-    nameLineEdit = new QLineEdit;
-    emailLineEdit = new QLineEdit;
-    passwordLineEdit = new QLineEdit;
-    loginButton = new QPushButton("Log In");
-    signButton = new QPushButton("Sign Up");
-    orLabel = new QLabel("-----------------( or )-----------------");
+    nameLineEdit = new QLineEdit(formContainer);
+    emailLineEdit = new QLineEdit(formContainer);
+    passwordLineEdit = new QLineEdit(formContainer);
+    loginButton = new QPushButton(formContainer);
+	loginButton->setText("Log In");
+    signButton = new QPushButton(formContainer);
+	signButton->setText("Sign Up");
+    orLabel = new QLabel(formContainer);
+	orLabel->setText("-----------------( or )-----------------");
 
     nameLineEdit->setPlaceholderText("Full Name");
     nameLineEdit->setStyleSheet("border: 1.2px solid gray; border-radius: 4px; padding: 16px; height: 40px; margin:15px");
@@ -31,14 +35,13 @@ LoginPageWidget::LoginPageWidget(QWidget* parent) : QWidget(parent) {
     formLayout->addWidget(orLabel);
     formLayout->addWidget(signButton);
 
-    formContainer = new QWidget;
     formContainer->setLayout(formLayout);
     formContainer->setStyleSheet("background-color: white;border: 0.9px solid gray; border-radius: 12px; padding: 15px;");
 	formContainer->setFixedWidth(500);
 	formContainer->setFixedHeight(510);
 	formContainer->setContentsMargins(10, 10, 10, 10);
 
-    layout = new QVBoxLayout;
+    layout = new QVBoxLayout(this);
     layout->addWidget(logoButton, 0, Qt::AlignHCenter);
 	layout->addSpacing(5);
     layout->addWidget(formContainer, 0, Qt::AlignHCenter);

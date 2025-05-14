@@ -10,14 +10,17 @@ class ShowBalanceWidget : public QWidget {
 public:
     explicit ShowBalanceWidget(QWidget* parent = nullptr);
     void setBalance(double amount);
+	void applyDarkMode(bool dark);
 
-private slots:
+private:
     void updateBalanceFromInput();
+
 
 private:
     QLabel* balanceLabel;
     QLineEdit* balanceInput;
     QPushButton* setBalanceButton;
+	QLabel* titleLabel;
     double currentBalance = 0.0;
     double targetBalance = 0.0;
     QTimer* balanceAnimationTimer;

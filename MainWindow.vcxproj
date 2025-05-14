@@ -93,8 +93,12 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="EditProfilePageWidget.cpp" />
+    <ClCompile Include="RequestWidget.cpp" />
+    <ClCompile Include="sendWidget.cpp" />
     <ClCompile Include="showBalanceWidget.cpp" />
     <ClCompile Include="SignPageWidget.cpp" />
+    <ClCompile Include="ViewTransactions.cpp" />
+    <ClInclude Include="ViewTransactions.h" />
     <QtRcc Include="MainWindow.qrc" />
     <QtUic Include="MainWindow.ui" />
     <ClInclude Include="EditProfilePageWidget.h" />
@@ -109,6 +113,8 @@
     <ClInclude Include="LoginPageWidget.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="RequestWidget.h" />
+    <QtMoc Include="sendWidget.h" />
     <ClInclude Include="showBalanceWidget.h" />
     <ClInclude Include="SignPageWidget.h" />
   </ItemGroup>

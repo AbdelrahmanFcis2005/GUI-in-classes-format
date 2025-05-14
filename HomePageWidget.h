@@ -18,11 +18,16 @@ public:
     void applyDarkMode(bool dark);
 	QPushButton* getProfileButton() const;
 	QPushButton* getBalanceButton() const;
-	QPushButton* getFeedbackButton() const;
+	QPushButton* getViewTransactionsButton() const;
 	QPushButton* getLogoutButton() const;
+	QPushButton* getRequestButton() const;
+	QPushButton* getSendButton() const;
 
 private:
     QFrame* bottomNav;
+	QPushButton* RequestButton;	
+	QPushButton* centerButton;
+	QPushButton* SendButton;
 	QStringList labels;
     QList<QPushButton*> navButtons;
 };
