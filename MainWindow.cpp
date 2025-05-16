@@ -10,6 +10,7 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
 	requestPage = new RequestWidget;
 	sendPage = new SendWidget;
 	viewTransactionsPage = new ViewTransactions;
+    showProfilePage = new ShowProfilePage;
 
 
     pagesWidget = new QStackedWidget;
@@ -25,7 +26,8 @@ MainWindow::MainWindow(QWidget* parent) : QMainWindow(parent) {
     connect(toggleModeButton, &QPushButton::toggled, this, &MainWindow::toggleDarkMode);
     connect(loginPage->getLoginButton(), &QPushButton::clicked, this, &MainWindow::showHome);
     connect(loginPage->getSignButton(), &QPushButton::clicked, this, &MainWindow::showSignUp);
-	connect(homePage->getProfileButton(), &QPushButton::clicked, this, &MainWindow::showEditProfile);
+	connect(homePage->getProfileButton(), &QPushButton::clicked, this, &MainWindow::showProfilePageWidget);
+	connect(showProfilePage->getEditProfileButton(), &QPushButton::clicked, this, &MainWindow::showEditProfile);
 	connect(homePage->getBalanceButton(), &QPushButton::clicked, this, &MainWindow::showShowBalance);
 	connect(homePage->getLogoutButton(), &QPushButton::clicked, this, &MainWindow::showLoginPage);
 	connect(homePage->getViewTransactionsButton(), &QPushButton::clicked, this, &MainWindow::showTransactions);
@@ -180,6 +182,11 @@ void MainWindow::showTransactions() {
 	updateBackButtonVisibility();
 }
 
+void MainWindow::showProfilePageWidget() {
+	pagesWidget->addWidget(showProfilePage);
+	pagesWidget->setCurrentWidget(showProfilePage);
+	updateBackButtonVisibility();
+}
 void MainWindow::toggleDarkMode() {
     isDarkMode = !isDarkMode;
 
@@ -210,5 +217,5 @@ void MainWindow::toggleDarkMode() {
 	requestPage->applyDarkMode(isDarkMode);
 	sendPage->applyDarkMode(isDarkMode);
     viewTransactionsPage->applyDarkMode(isDarkMode);
-    
+	showProfilePage->applyDarkMode(isDarkMode);
 }

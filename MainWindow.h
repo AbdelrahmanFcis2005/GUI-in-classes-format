@@ -10,6 +10,7 @@
 #include "RequestWidget.h"
 #include "sendWidget.h"
 #include "ViewTransactions.h"
+#include "ShowProfilePage.h"
 #include <QSize>
 #include <QIcon>
 
@@ -19,6 +20,8 @@ public:
     MainWindow(QWidget* parent = nullptr);
 	QVBoxLayout* mainLayout= new QVBoxLayout;
     QWidget* central;
+    void toggleDarkMode();
+
 private:
     QHBoxLayout* windowControlsLayout;
     QWidget* windowControlsWidget;
@@ -29,6 +32,7 @@ private:
 	SignPageWidget* signPage;
     ShowBalanceWidget* showBalance;
 	RequestWidget* requestPage;
+	ShowProfilePage* showProfilePage;
 	EditProfilePageWidget* editProfilePage;
     HomePageWidget* homePage;
 	SendWidget* sendPage;
@@ -46,7 +50,7 @@ private:
 	void showSignUp();
 	void showRequest();
 	void showLoginPage();
-    void toggleDarkMode();
 	void showSendPage();
 	void showTransactions();
+	void showProfilePageWidget();
 };

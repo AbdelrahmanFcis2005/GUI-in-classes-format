@@ -5,9 +5,9 @@ EditProfilePageWidget::EditProfilePageWidget(QWidget* parent) : QWidget(parent) 
     formLayout = new QFormLayout;
 
     logoButton = new QPushButton;
-    logoButton->setIcon(QIcon("media/profile.svg"));
+    logoButton->setIcon(QIcon("media/user-pen-solid.svg"));
     logoButton->setStyleSheet("border:none; padding:0px");
-    logoButton->setIconSize(QSize(100, 100));
+    logoButton->setIconSize(QSize(90, 90));
 
     nameLineEdit = new QLineEdit(this);
     emailLineEdit = new QLineEdit(this);

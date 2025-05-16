@@ -96,8 +96,10 @@
     <ClCompile Include="RequestWidget.cpp" />
     <ClCompile Include="sendWidget.cpp" />
     <ClCompile Include="showBalanceWidget.cpp" />
+    <ClCompile Include="showProfilePage.cpp" />
     <ClCompile Include="SignPageWidget.cpp" />
     <ClCompile Include="ViewTransactions.cpp" />
+    <ClInclude Include="showProfilePage.h" />
     <ClInclude Include="ViewTransactions.h" />
     <QtRcc Include="MainWindow.qrc" />
     <QtUic Include="MainWindow.ui" />

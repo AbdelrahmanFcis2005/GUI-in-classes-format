@@ -8,7 +8,7 @@ LoginPageWidget::LoginPageWidget(QWidget* parent) : QWidget(parent) {
     logoButton = new QPushButton(this);
     logoButton->setIcon(QIcon("media/ASU-PAY.svg"));
     logoButton->setStyleSheet("border:none; padding:0px");
-    logoButton->setIconSize(QSize(110, 110));
+    logoButton->setIconSize(QSize(90, 90));
 
     nameLineEdit = new QLineEdit(formContainer);
     emailLineEdit = new QLineEdit(formContainer);
